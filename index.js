@@ -14,6 +14,10 @@ const server = http.createServer(async (request, response) => {
     response.writeHead(200, { "Content-Type": "text/html" });
     const data = await fs.readFile(`pages/${routeToFiles[request.url]}`);
     response.write(data);
+  } else {
+    response.writeHead(404, { "Content-Type": "text/html" });
+    const data = await fs.readFile("pages/404.html");
+    response.write(data);
   }
   response.end();
 });
